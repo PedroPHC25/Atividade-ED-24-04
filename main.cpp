@@ -21,7 +21,7 @@ void insertEnd(Node**, int);
 void displayList(Node*);
 void insertAfter(Node*, int);
 void deleteNode(Node**, Node*);
-void insertBefore(Node*, int); // TODO
+void insertBefore(Node**, Node*, int); // TODO
 void deleteNodebyValue(Node**, int); // TODO
 Node* searchNodebyValue(Node**, int); // TODO
 
