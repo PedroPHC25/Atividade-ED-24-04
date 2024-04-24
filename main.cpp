@@ -69,18 +69,16 @@ int main()
     
     cout << "===================================================================" << endl;
 
-    insertBefore(head->ptrNext, 27);
+    insertBefore(&head, head->ptrNext, 27);
     
     displayList(head);
 
     
-    cout << "===================================================================" << endl;
+    cout << "==================================================================+" << endl;
     
-    insertBefore(head, 17);
+    insertBefore(&head, head, 17);
 
-    displayList(head -> ptrPrev);
-
-    cout << "===================================================================" << endl;
+    displayList(head);
     
     // Procurando um elemento
     Node* inexistentNode = searchNodebyValue(&head, 59);
@@ -267,11 +265,12 @@ void deleteNode(Node** head, Node* ptrDelete)
 // Exercício 3. Elaborar a função "Node* searchNodebyValue(Node**, int)".
 ////////////////////////////////////////////////////////////////////////////////
 
-void insertBefore(Node* ptrLocation, int iPayload){
+// Essa função não funciona para o caso especial de inserir antes do primeiro elemento sem receber o head
+void insertBefore(Node** head, Node* ptrLocation, int iPayload){
     
     // Se o ponteiro for nulo, não podemos inserir
-    if(ptrLocation == nullptr){
-        cout << "Location é nullptr." << endl;
+    if(ptrLocation == NULL){
+        cout << "Location é NULL." << endl;
         return;
     }
 
@@ -286,15 +285,17 @@ void insertBefore(Node* ptrLocation, int iPayload){
     ptrLocation -> ptrPrev = newNode;
 
     //Se o novo nó for o primeiro, atualiza a head
-    if(newNode -> ptrPrev == nullptr){
+    if(newNode -> ptrPrev == NULL){
         
-        ptrLocation = newNode;
+        *head = newNode;
         return;
     }
 
     // Se o novo nó não for o primeiro, o próximo do anterior do novo é o próprio novo
     newNode -> ptrPrev -> ptrNext = newNode;
+   return;
 };
+    
 
 Node* searchNodebyValue(Node** head, int iValue)
 {
