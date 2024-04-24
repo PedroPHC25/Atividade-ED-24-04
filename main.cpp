@@ -81,6 +81,31 @@ int main()
 
     displayList(head -> ptrPrev);
 
+    cout << "===================================================================" << endl;
+    
+    // Procurando um elemento
+    Node* inexistentNode = searchNodebyValue(&head, 59);
+    Node* node13 = searchNodebyValue(&head, 13);
+    
+    cout << node13 -> iPayload << endl;
+    
+    cout << "===================================================================" << endl;
+    
+    // Tentando remover um elemento inexistente
+    deleteNodebyValue(&head, 58);
+    
+    cout << "===================================================================" << endl;
+    
+    // Removendo elementos
+    deleteNodebyValue(&head, 0);
+    
+    displayList(head);
+    
+    deleteNodebyValue(&head, 65);
+    deleteNodebyValue(&head, 13);
+    deleteNodebyValue(&head, 13);
+    
+    displayList(head);
     
     return 0;
 }
@@ -243,7 +268,6 @@ void deleteNode(Node** head, Node* ptrDelete)
 // Exercício 3. Elaborar a função "Node* searchNodebyValue(Node**, int)".
 ////////////////////////////////////////////////////////////////////////////////
 
-
 void insertBefore(Node* ptrLocation, int iPayload){
     
     // Se o ponteiro for nulo, não podemos inserir
@@ -271,6 +295,54 @@ void insertBefore(Node* ptrLocation, int iPayload){
 
     // Se o novo nó não for o primeiro, o próximo do anterior do novo é o próprio novo
     newNode -> ptrPrev -> ptrNext = newNode;
-  
 };
+
+Node* searchNodebyValue(Node** head, int iValue)
+{
+    // Se a lista for vazia, não faz nada
+    if (*head == nullptr)
+    {
+        cout << "Lista vazia: O elemento não existe" << endl;
+        return nullptr;
+    }
+    else
+    {
+        // Ponteiro para percorrer a lista
+        Node* current = (*head);
+        
+        // Até chegar ao final da lista...
+        while (current != nullptr)
+        {
+            // Se o valor do nó for o que queremos, retorna ele e encerra a função
+            if (current -> iPayload == iValue)
+            {
+                return current;
+            }
+            // Se não, avança
+            current = current -> ptrNext;
+        }
+        
+        // Se não fizer nada, o elemento não existe
+        cout << "Elemento não encontrado" << endl;
+        return current;
+    }
+}
+
+void deleteNodebyValue(Node** head, int iValue)
+{
+    // Encontrando o nó a ser removido
+    Node* removedNode = searchNodebyValue(head, iValue);
+    
+    // Se esse nó for nulo, o elemento não existe
+    if (removedNode == nullptr)
+    {
+        cout << "Não é possível remover o elemento " << iValue << endl;
+    }
+    // Se não, remove ele
+    else
+    {
+        cout << "Elemento " << removedNode -> iPayload << " removido" << endl;
+        deleteNode(head, removedNode);
+    }
+}
     
