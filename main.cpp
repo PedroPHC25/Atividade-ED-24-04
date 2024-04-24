@@ -104,8 +104,8 @@ int main()
     displayList(head);
 
     deleteNodebyValue(&head, 65);
-    deleteNodebyValue(&head, 13);
-    deleteNodebyValue(&head, 13);
+    deleteNodebyValue(&head, 17);
+    deleteNodebyValue(&head, 27);
 
     displayList(head);
     
