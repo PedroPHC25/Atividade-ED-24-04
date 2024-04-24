@@ -48,60 +48,65 @@ int main()
     displayList(head);
     
     cout << "===================================================================" << endl;
-    
+
+    // Inserindo elementos na frente da lista
     insertFront(&head, 65);
     insertFront(&head, 78);
     
     displayList(head);
     
     cout << "===================================================================" << endl;
-    
+
+    // Inserindo elementos após um específico
     insertAfter(head, 10);
     insertAfter(head, 13);
     
     displayList(head);
     
     cout << "===================================================================" << endl;
-    
+
+    // Removendo um nó
     deleteNode(&head, head);
     
     displayList(head);
     
     cout << "===================================================================" << endl;
 
+    // Inserindo nós antes de um específico
     insertBefore(&head, head->ptrNext, 27);
     
     displayList(head);
 
-    
     cout << "==================================================================+" << endl;
     
     insertBefore(&head, head, 17);
 
     displayList(head);
     
+    cout << "===================================================================" << endl;
+
     // Procurando um elemento
     Node* inexistentNode = searchNodebyValue(&head, 59);
     Node* node13 = searchNodebyValue(&head, 13);
-    
+
     cout << node13 -> iPayload << endl;
-    
+
     cout << "===================================================================" << endl;
-    
+
     // Tentando remover um elemento inexistente
     deleteNodebyValue(&head, 58);
-    
+
     cout << "===================================================================" << endl;
-    
+
     // Removendo elementos
     deleteNodebyValue(&head, 0);
-    
+
     displayList(head);
-    
+
     deleteNodebyValue(&head, 65);
     deleteNodebyValue(&head, 13);
     deleteNodebyValue(&head, 13);
-    
+
     displayList(head);
     
     return 0;
