@@ -67,6 +67,21 @@ int main()
     
     displayList(head);
     
+    cout << "===================================================================" << endl;
+
+    insertBefore(head->ptrNext, 27);
+    
+    displayList(head);
+
+    
+    cout << "===================================================================
+        " << endl;
+    
+    insertBefore(head, 17);
+
+    displayList(head -> ptrPrev);
+
+    
     return 0;
 }
 
@@ -227,3 +242,35 @@ void deleteNode(Node** head, Node* ptrDelete)
 // Exercício 2. Elaborar a função "void deleteNodebyValue(Node**, int)".
 // Exercício 3. Elaborar a função "Node* searchNodebyValue(Node**, int)".
 ////////////////////////////////////////////////////////////////////////////////
+
+
+void insertBefore(Node* ptrLocation, int iPayload){
+    
+    // Se o ponteiro for nulo, não podemos inserir
+    if(ptrLocation == nullptr){
+        cout << "Location é nullptr." << endl;
+        return;
+    }
+
+    Node* newNode = createNode(iPayload);
+    
+    // O próximo do novo nó será o da localização
+    newNode -> ptrNext= ptrLocation;
+    // O anterior do novo nó será o anterior da localização
+    newNode -> ptrPrev = ptrLocation -> ptrPrev;
+
+    //O anterior da localização é o novo nó
+    ptrLocation -> ptrPrev = newNode;
+
+    //Se o novo nó for o primeiro, atualiza a head
+    if(newNode -> ptrPrev == nullptr){
+        
+        ptrLocation = newNode;
+        return;
+    }
+
+    // Se o novo nó não for o primeiro, o próximo do anterior do novo é o próprio novo
+    newNode -> ptrPrev -> ptrNext = newNode;
+  
+};
+    
